@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set timezone
-        run: Set-TimeZone -Id "China Standard Time"  #sudo timedatectl set-timezone 'Asia/Shanghai'
+        run: sudo timedatectl set-timezone 'Asia/Shanghai'  #Set-TimeZone -Id "China Standard Time"  
 
       - name: Echo current time
         run: timedatectl
