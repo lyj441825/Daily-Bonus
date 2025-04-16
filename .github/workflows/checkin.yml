@@ -31,11 +31,24 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set timezone
-        run: sudo timedatectl set-timezone 'Asia/Shanghai'  #Set-TimeZone -Id "China Standard Time"  
+#      - name: Set timezone
+#        run: Set-TimeZone -Id "China Standard Time"  #sudo timedatectl set-timezone 'Asia/Shanghai'  #
+
+#      - name: Echo current time
+#        run: timedatectl
+        
+      - name: Set timezone (Windows)
+        if: matrix.os == 'self-hosted-windows'  # 仅 Windows 运行器执行
+        shell: powershell
+        run: |
+          Set-TimeZone -Id "China Standard Time"  # Windows 专用命令
+          Write-Output "时区已设置为中国标准时间"
 
       - name: Echo current time
-        run: timedatectl
+        shell: powershell
+        run: |
+          Get-Date -Format "yyyy-MM-dd HH:mm:ss"  # 输出当前时间
+          Get-TimeZone | Select-Object Id, StandardName  # 输出时区信息
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v5
