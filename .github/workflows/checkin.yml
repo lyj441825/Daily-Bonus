@@ -50,10 +50,10 @@ jobs:
           Get-Date -Format "yyyy-MM-dd HH:mm:ss"  # 输出当前时间
           Get-TimeZone | Select-Object Id, StandardName  # 输出时区信息
 
-      - name: Set up Python 3.8
+      - name: Set up Python 3.13
         uses: actions/setup-python@v5
         with:
-          python-version: '3.8'
+          python-version: '3.13'
           architecture: 'x64'
 
       - name: Install dependencies
